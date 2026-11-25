@@ -26,15 +26,24 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v3
-- name: Enable BreakContinueInInlineLambdas
+
+      - name: Enable BreakContinueInInlineLambdas
         run: |
-          cat << 'EOF' >> app/build.gradle.kts
-          tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-              kotlinOptions {
-                  freeCompilerArgs += "-XXLanguage:+BreakContinueInInlineLambdas"
-              }
+          python3 - << 'PY'
+          from pathlib import Path
+
+          gradle_file = Path("app/build.gradle.kts")
+          snippet = '''
+          tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).configureEach {
+              compilerOptions.freeCompilerArgs.add("-XXLanguage:+BreakContinueInInlineLambdas")
           }
-          EOF
+          '''.strip() + "\n"
+
+          content = gradle_file.read_text(encoding="utf-8")
+          if "BreakContinueInInlineLambdas" not in content:
+              gradle_file.write_text(content + "\n" + snippet, encoding="utf-8")
+          PY
+
       - name: Build Debug APK
         run: gradle assembleDebug --stacktrace
 
