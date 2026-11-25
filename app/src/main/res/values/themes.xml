@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.BSPSMS" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#123B70</item>
+    </style>
+</resources>

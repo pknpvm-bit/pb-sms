@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Excel to Web Smart Marks Filler",
+  "version": "1.0",
+  "description": "Reads CSV or Excel XML/HTML files, auto-detects webpage subject, matches student names, and fills marks automatically.",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Excel Marks Filler"
+  }
+}

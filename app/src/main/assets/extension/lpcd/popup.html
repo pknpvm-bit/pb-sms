@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Qualitative Filler</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 380px;
+      margin: 0;
+      padding: 12px;
+      background-color: #f4f6f9;
+      color: #333;
+    }
+    h2 {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+      color: #1a73e8;
+      text-align: center;
+    }
+    .info-bar {
+      font-size: 11px;
+      background: #e8f0fe;
+      color: #174ea6;
+      padding: 6px 8px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .tab-btn {
+      flex: 1;
+      min-width: 44px;
+      padding: 6px 4px;
+      border: 1px solid #ccc;
+      background: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      position: relative;
+    }
+    .tab-btn.active {
+      background: #1a73e8;
+      color: #fff;
+      border-color: #1a73e8;
+    }
+    .badge {
+      display: inline-block;
+      background: #e67c73;
+      color: white;
+      border-radius: 8px;
+      padding: 0 4px;
+      font-size: 9px;
+      margin-left: 2px;
+    }
+    .tab-btn.active .badge {
+      background: #fff;
+      color: #1a73e8;
+    }
+    .panel {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 8px;
+      max-height: 220px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #eee;
+    }
+    .panel-title {
+      font-size: 12px;
+      font-weight: bold;
+      color: #444;
+    }
+    .clear-col-btn {
+      background: #fce8e6;
+      color: #c5221f;
+      border: 1px solid #f6aea9;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+    .clear-col-btn:hover {
+      background: #f6aea9;
+    }
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 4px 2px;
+      border-bottom: 1px solid #f5f5f5;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .option-item:hover {
+      background: #f8f9fa;
+    }
+    .option-item input {
+      margin-top: 2px;
+      cursor: pointer;
+    }
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .btn-row {
+      display: flex;
+      gap: 6px;
+    }
+    button.action-btn {
+      flex: 1;
+      padding: 9px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 13px;
+      cursor: pointer;
+      color: #fff;
+    }
+    .btn-auto {
+      background: #188038;
+    }
+    .btn-auto:hover {
+      background: #137333;
+    }
+    .btn-manual {
+      background: #1a73e8;
+    }
+    .btn-manual:hover {
+      background: #1557b0;
+    }
+    .btn-clear-all {
+      background: #d93025;
+      padding: 6px;
+      font-size: 12px;
+    }
+    .btn-clear-all:hover {
+      background: #b31412;
+    }
+    .btn-clear-inputs {
+      background: #5f6368;
+      padding: 6px;
+      font-size: 12px;
+    }
+    #status {
+      margin-top: 8px;
+      font-size: 12px;
+      text-align: center;
+      font-weight: 500;
+      color: #188038;
+      min-height: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h2>School Qualitative Auto & Manual Filler</h2>
+  <div class="info-bar">
+    <b>Auto Mode:</b> শুধু নিচের টিক (✓) দেওয়া অপশনগুলো থেকে র‍্যান্ডমলি বসবে। (কিছু টিক না দিলে সব অপশন থেকে নেবে)।<br>
+    <b>Manual Mode:</b> ওয়েবপেজের ঘরে ক্লিক করলে সব অপশনের ড্রপডাউন দেখাবে।
+  </div>
+
+  <div class="tabs" id="tabsContainer"></div>
+
+  <div class="panel">
+    <div class="panel-header">
+      <span class="panel-title" id="currentColTitle">POI Custom Auto Pool</span>
+      <button class="clear-col-btn" id="clearCurrentColBtn">Clear This Column</button>
+    </div>
+    <div id="optionsList"></div>
+  </div>
+
+  <div class="controls">
+    <button class="action-btn btn-auto" id="autoFillBtn">⚡ Auto Fill Selected Pool</button>
+    <div class="btn-row">
+      <button class="action-btn btn-manual" id="enableManualBtn">📋 Enable Full Manual Dropdowns</button>
+    </div>
+    <div class="btn-row">
+      <button class="action-btn btn-clear-all" id="clearAllPoolBtn">🗑️ Reset All Selections</button>
+      <button class="action-btn btn-clear-inputs" id="clearWebInputsBtn">🧹 Clear Page Fields</button>
+    </div>
+  </div>
+
+  <div id="status"></div>
+
+  <script src="data.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

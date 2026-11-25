@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "A/B Form Filler - Multi Website",
+  "version": "2.0.0",
+  "description": "Detects repeated form groups and fills 11 text fields with an A/B pattern. Does not submit forms.",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "A/B Form Filler"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

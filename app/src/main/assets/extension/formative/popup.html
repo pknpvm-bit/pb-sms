@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      min-width: 320px;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 12px 12px 72px 12px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f9;
+      color: #1e293b;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    h3 {
+      margin: 0 0 4px 0;
+      font-size: 17px;
+      color: #123b70;
+    }
+    .subtitle {
+      font-size: 11.5px;
+      color: #475569;
+      margin: 0;
+      line-height: 1.4;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+    .card-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 4px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .card-desc {
+      font-size: 11.5px;
+      color: #475569;
+      margin: 0 0 10px 0;
+      line-height: 1.4;
+    }
+    button {
+      width: 100%;
+      padding: 10px 12px;
+      color: #ffffff;
+      border: none;
+      border-radius: 7px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.15s, background-color 0.15s;
+    }
+    button:active {
+      opacity: 0.88;
+    }
+    .btn-auto {
+      background-color: #1a73e8;
+    }
+    .btn-auto:hover {
+      background-color: #1557b0;
+    }
+    .btn-maxmin {
+      background-color: #0f766e;
+    }
+    .btn-maxmin:hover {
+      background-color: #0d5e57;
+    }
+    .btn-full {
+      background-color: #e65100;
+    }
+    .btn-full:hover {
+      background-color: #cc4700;
+    }
+    .group-toolbar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .btn-mini {
+      width: auto;
+      flex: 1;
+      padding: 6px 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      border-radius: 6px;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+    }
+    .btn-mini:hover {
+      background-color: #e2e8f0;
+    }
+    .btn-mini-danger {
+      color: #b91c1c;
+      background-color: #fef2f2;
+      border-color: #fecaca;
+    }
+    .groups-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .group-box {
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      background-color: #f8fafc;
+    }
+    .group-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #123b70;
+      margin-bottom: 6px;
+    }
+    .group-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .mark-col {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 5px;
+    }
+    .mark-col-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #334155;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .minmax-pair {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .input-wrap label {
+      font-size: 10px;
+      font-weight: 600;
+      color: #64748b;
+      width: 24px;
+      flex-shrink: 0;
+    }
+    .input-wrap input {
+      width: 100%;
+      min-width: 0;
+      padding: 4px 5px;
+      border: 1px solid #cbd5e1;
+      border-radius: 5px;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-align: center;
+      color: #0f172a;
+      background-color: #ffffff;
+    }
+    .input-wrap input:focus {
+      outline: 2px solid #0f766e;
+      border-color: #0f766e;
+    }
+    .hint-note {
+      font-size: 10.5px;
+      color: #64748b;
+      margin: 0 0 8px 0;
+      line-height: 1.35;
+    }
+    #status {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 10px;
+      max-width: 456px;
+      margin: 0 auto;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+      display: none;
+      z-index: 99;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h3>Auto Marks Filler</h3>
+    <p class="subtitle">Formative Marks Entry Tool (3 Independent Fill Options)</p>
+  </div>
+
+  <!-- 1. Previous Auto Fill -->
+  <div class="card">
+    <div class="card-title">1. Previous Auto Fill</div>
+    <p class="card-desc">পেজের ফুল মার্কস (20 বা 10) অটোমেটিক ডিটেক্ট করে ১০ জন করে ব্যাচে নম্বর বসাবে।</p>
+    <button id="fillBtn" class="btn-auto" type="button">Fill Marks Now</button>
+  </div>
+
+  <!-- 2. MAX–MIN Fill -->
+  <div class="card">
+    <div class="card-title">2. MAX–MIN Fill (Group of 10)</div>
+    <p class="card-desc">প্রতি ১০ জন ছাত্রের গ্রুপের জন্য Marks 1, Marks 2 ও Marks 3-এর আলাদা Minimum ও Maximum নির্ধারণ করুন।</p>
+
+    <div class="group-toolbar">
+      <button id="addGroupBtn" class="btn-mini" type="button">+ Add Group (10)</button>
+      <button id="removeGroupBtn" class="btn-mini btn-mini-danger" type="button">- Remove Last</button>
+      <button id="copyFirstGroupBtn" class="btn-mini" type="button">Copy Group 1 to All</button>
+    </div>
+
+    <div id="groupsContainer" class="groups-list"></div>
+
+    <p class="hint-note">Min ও Max সমান হলে ঠিক সেই নম্বরটিই বসবে। অতিরিক্ত ছাত্র থাকলে শেষ গ্রুপের সীমা প্রয়োগ হবে।</p>
+    <button id="maxMinFillBtn" class="btn-maxmin" type="button">MAX–MIN Fill</button>
+  </div>
+
+  <!-- 3. Full Marks -->
+  <div class="card">
+    <div class="card-title">3. Full Marks</div>
+    <p class="card-desc">প্রতিটি ফিল্ডের Full Marks (20 বা 10) আলাদাভাবে ডিটেক্ট করে সব ছাত্রকে পূর্ণ নম্বর দেবে (Min–Max উপেক্ষা করবে)।</p>
+    <button id="fullMarksBtn" class="btn-full" type="button">Full Marks</button>
+  </div>
+
+  <div id="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

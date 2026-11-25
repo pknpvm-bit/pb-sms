@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "BSP-SMS",
+  "version": "1.0.0",
+  "description": "A unified floating launcher for seven school-work helper extensions.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "action": {"default_title": "Open BSP-SMS"},
+  "background": {"service_worker": "background.js"},
+  "content_scripts": [
+    {"matches": ["<all_urls>"], "js": ["lpcd/content.js", "bco/ab_form_filler_v2/content.js"], "run_at": "document_idle"}
+  ],
+  "web_accessible_resources": [{"resources": ["hub.html", "hub.css", "hub.js", "formative/*", "talk/*", "lpcd/*", "bco/ab_form_filler_v2/*", "excel/*", "bulk_marksheet/*", "result_ready/*"], "matches": ["<all_urls>"]}]
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 280px;
+      padding: 15px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      color: #202124;
+    }
+    h3 {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+      color: #1a73e8;
+      text-align: center;
+    }
+    .lang-box {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    select {
+      flex: 1;
+      padding: 6px;
+      border-radius: 5px;
+      border: 1px solid #dadce0;
+      font-size: 13px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #188038;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #137333;
+    }
+    .cmds {
+      margin-top: 12px;
+      background: #fff;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #e0e0e0;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .cmds strong {
+      color: #1a73e8;
+    }
+    #status {
+      margin-top: 10px;
+      font-size: 12px;
+      text-align: center;
+      font-weight: 600;
+      color: #d93025;
+    }
+  </style>
+</head>
+<body>
+  <h3>🎙️ Voice Marks Filler</h3>
+  <div class="lang-box">
+    <select id="langSelect">
+      <option value="bn-IN">বাংলা (Bangla + English Numbers)</option>
+      <option value="en-IN">English (Indian English)</option>
+    </select>
+  </div>
+  <button id="injectBtn">ওয়েবপেজে ভয়েস প্যানেল চালু করুন</button>
+  <div id="status"></div>
+
+  <div class="cmds">
+    <strong>ভয়েস কমান্ডসমূহ:</strong><br>
+    • <b>নম্বর বলুন:</b> "15", "একুশ", "পঁয়তাল্লিশ", "twenty five", বা একসাথে "15 18 20"<br>
+    • <b>দশমিক / সাড়ে:</b> "15.5", "সাড়ে আঠারো"<br>
+    • <b>Undo / আনডু:</b> শেষ বসানো নম্বর পূর্বের অবস্থায় ফেরাবে<br>
+    • <b>Skip / বাদ:</b> ঘর ছেড়ে পরের ঘরে যাবে<br>
+    • <b>Back / আগের · Delete / মুছুন · Next / পরের</b><br>
+    • <b>সুরক্ষা:</b> সর্বোচ্চ নম্বরের (Max Marks) বেশি হলে বসাবে না
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

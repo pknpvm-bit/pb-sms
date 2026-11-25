@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "School Qualitative Data Auto & Manual Filler",
+  "version": "1.0",
+  "description": "Smart auto-random pool selection & manual dropdown filler for POI, AOI, PA, EA, FOA, LG, and SLD columns.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Qualitative Auto Filler"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

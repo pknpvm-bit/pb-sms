@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Voice Marks Filler (Bangla & English)",
+  "version": "1.0",
+  "description": "Fill marks hands-free using Bangla and English voice commands with Skip, Back, Delete, and Next controls.",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Voice Marks Filler"
+  }
+}
